@@ -1,6 +1,6 @@
 const Home = async (req, res) => {
   try {
-    res.send("Weilcome to Home Page with controller");
+    res.send("Weilcome to Home Page again with auth controllers");
   } catch (error) {
     console.log(error);
   }
@@ -8,7 +8,7 @@ const Home = async (req, res) => {
 
 const Register = async (req, res) => {
   try {
-    res.send("welcome to register page with controllers");
+    res.send("welcome to register page with auth controllers");
   } catch (error) {
     console.log(error);
   }
