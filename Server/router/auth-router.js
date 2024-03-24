@@ -4,6 +4,6 @@ const router = express.Router();
 
 router.route("/").get(authControllers.Home);
 
-router.route("/register").get(authControllers.Register);
+router.route("/register").post(authControllers.Register);
 
 module.exports = router;
