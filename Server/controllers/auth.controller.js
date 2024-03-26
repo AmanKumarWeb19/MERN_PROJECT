@@ -1,5 +1,5 @@
 const UserModel = require("../models/user_models");
-
+const bcrypt = require("bcryptjs");
 const Home = async (req, res) => {
   try {
     res.send("Weilcome to Home Page again with auth controllers");
@@ -10,7 +10,6 @@ const Home = async (req, res) => {
 
 const Register = async (req, res) => {
   try {
-    console.log(req.body);
     const { username, email, password, phone } = req.body;
 
     const userExist = await UserModel.findOne({ email });
@@ -18,10 +17,15 @@ const Register = async (req, res) => {
     if (userExist) {
       return res.status(400).send({ msg: "email Already Exist." });
     }
+
+    const saltRound = 5;
+
+    const hassPassword = await bcrypt.hash(password, saltRound);
+
     const userCreated = await UserModel.create({
       username,
       email,
-      password,
+      password: hassPassword,
       phone,
     });
 
