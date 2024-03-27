@@ -29,7 +29,11 @@ const Register = async (req, res) => {
       phone,
     });
 
-    res.status(200).json({ msg: userCreated });
+    res.status(201).json({
+      msg: "registration successful",
+      token: await userCreated.generateToken(),
+      userId: userCreated.id.toString(),
+    });
   } catch (error) {
     console.log(error);
   }
